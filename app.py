@@ -30,7 +30,7 @@ def index():
     save_dir = "%s/%s" % (SAVE_DIR_BASE, rep_id)
     tag = 'keeb/blog-snapshot-%s' % rep_id
     if not os.path.exists(save_dir):
-        os.mkdir(save_dir)
+        os.makedirs(save_dir)
         clone(GIT_REPO, save_dir)
         build(save_dir, tag)
         if not check(tag): abort(400)
