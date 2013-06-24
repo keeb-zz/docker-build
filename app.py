@@ -25,7 +25,7 @@ GIT_REPO = "git://github.com/keeb/blog"
 
 @app.route('/', methods=["POST"])
 def index():
-    info = json.loads(request.data)
+    info = json.loads(request.form['payload'])
     rep_id = info["commits"][0]["id"][0:5]
     save_dir = "%s/%s" % (SAVE_DIR_BASE, rep_id)
     tag = 'keeb/blog-snapshot-%s' % rep_id
@@ -67,4 +67,4 @@ def run(tag):
 
 if __name__ == '__main__':
     import sys, os
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", port=8001)
